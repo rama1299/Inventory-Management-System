@@ -1,0 +1,16 @@
+dist/
+*.js
+
+*.tsbuildinfo
+
+node_modules/
+
+.env
+
+tsconfig.json
+
+package-lock.json
+
+yarn.lock
+
+.vscode/

@@ -1,0 +1,5 @@
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=blablabla
+DB_NAME=knitto-inventory
+PORT=3000
