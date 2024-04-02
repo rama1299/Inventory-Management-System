@@ -32,6 +32,12 @@ Repositori ini berisi aplikasi Express Node.js yang dibangun dengan TypeScript. 
     DB_NAME=knitto-inventory
     PORT=3000
     ```
+6. Jika folder src/uploads tidak ada, maka buat terlebih dahulu:
+
+    ```
+    cd src
+    mkdir uploads
+    ```
 
 ## Penyiapan Database
 
