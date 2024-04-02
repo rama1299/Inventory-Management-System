@@ -3,23 +3,24 @@ import config from './config'
 
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST } = config
 
-export let connection: Pool;
+export const connection: Pool = createPool({
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
-export const connectDB = async (): Promise<void> => {
-    connection = createPool({
-        host: DB_HOST,
-        user: DB_USER,
-        password: DB_PASSWORD,
-        database: DB_NAME,
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
-    });
+connection.beginTransaction = async () => {
+    await connection.query('START TRANSACTION');
+};
 
-    try {
-        await connection.getConnection();
-        console.log('Connected to the database');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
+connection.commit = async () => {
+    await connection.query('COMMIT');
+};
+
+connection.rollback = async () => {
+    await connection.query('ROLLBACK');
 };
